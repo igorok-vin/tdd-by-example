@@ -7,12 +7,15 @@ public class MoneyTest {
     @Test
     void testMultiplicationDollar() {
         /*Dollar five = new Dollar(5); or */
-        Money five = Money.dollar(5);
+        Money fiveDollar = Money.dollar(5);
         /*assertEquals(new Dollar(10),five.times(2));
         assertEquals(new Dollar(15),five.times(3));*/
         /*removing the direct references to the dollar object.*/
-        assertEquals(Money.dollar(10),five.times(2));
-        assertEquals(Money.dollar(15),five.times(3));
+        assertEquals(Money.dollar(10),fiveDollar.times(2));
+        assertEquals(Money.dollar(15),fiveDollar.times(3));
+
+        Money fiveFranc = Money.franc(5);
+        assertEquals(Money.franc(10),fiveFranc.times(2));
     }
 
     @Test
@@ -27,14 +30,14 @@ public class MoneyTest {
         assertNotEquals(Money.dollar(5),Money.franc(8));
     }
 
-    @Test
+    /*@Test
     void testMultiplicationFranc() {
         Money five = Money.franc(5);
-        /*assertEquals(new Franc(10),five.times(2));
-        assertEquals(new Franc(15),five.times(3));*/
+        *//*assertEquals(new Franc(10),five.times(2));
+        assertEquals(new Franc(15),five.times(3));*//*
         assertEquals(Money.franc(10),five.times(2));
         assertEquals(Money.franc(15),five.times(3));
-    }
+    }*/
 
     @Test
     void testEqualityFranc(){
