@@ -2,13 +2,13 @@ package guru.springframework;
 
 import java.util.Objects;
 
-public class Money {
+public class Money implements Expression {
     protected int amount;
     protected String currency;
 
     public Money(int amount, String currency) {
-        this.amount=amount;
-        this.currency=currency;
+        this.amount = amount;
+        this.currency = currency;
     }
 
     protected String currency() {
@@ -16,7 +16,7 @@ public class Money {
     }
 
     public static Money dollar(int amount) {
-        return new Money(amount,"USD");
+        return new Money(amount, "USD");
     }
 
     public static Money franc(int amount) {
@@ -24,7 +24,16 @@ public class Money {
     }
 
     public Money times(int multiplier) {
-        return new Money(amount * multiplier,this.currency);
+        return new Money(amount * multiplier, this.currency);
+    }
+
+    public Expression plus(Money addend) {
+        return new Sum(this,addend);
+    }
+
+    @Override
+    public Money reduce(String s){
+        return this;
     }
 
     @Override
@@ -32,7 +41,7 @@ public class Money {
         if (this == o) return true;
 //      if (o == null || getClass() != o.getClass()) return false;
         Money money = (Money) o;
-        return amount == money.amount && this.currency== money.currency;
+        return amount == money.amount && this.currency == money.currency;
     }
 
     @Override
